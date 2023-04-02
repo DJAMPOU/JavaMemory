@@ -8,21 +8,21 @@ import org.newdawn.slick.SlickException;
 
 public class Card {
 
-	private final int deltaFrame = 0;
-	private Image img;
-	private static Image imgDos;
-	private static Image frame;
-	private Image stepAnim;
-	private static Image frameHover;
+	private final int deltaFrame = 0;	//padding de la carte
+	private Image img;					//image de la carte
+	private static Image imgDos;		//image du dos
+	private static Image frame;			//image bordure
+	private Image stepAnim;				//etape de l'animation en cours
+	private static Image frameHover;	//image de l'ombre pour le hover
 	private int id;
-	private int etat;
-	private int anim;
+	private int etat;					//etat de la carte 0->caché 1->découvert 
+	private int anim;					//pour les différentes animations (vibrer, retourner)
 	private int timer;
-	private int vibre;
-	private int valide;
-	private float x, y, vx, vy;
-	private boolean hover;
-	private static Music musicClic;
+	private int vibre;					//intensité du vibrement
+	private int valide;					//carte validé ou non
+	private float x, y, vx, vy;			//coord de la carte et sa vitesse
+	private boolean hover;				//le curseur est sur la carte
+	private static Music musicClic;		//son lors du clic
 	
 	
 	public Card(Image img, int id) throws SlickException {
