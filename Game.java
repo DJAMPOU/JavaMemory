@@ -25,6 +25,20 @@ public class Game extends BasicGame {
 	}
 
 	@Override
+	public void init(GameContainer gc) throws SlickException {
+		x_pl = 100;
+		y_pl = 100;
+		dimCard = 100;
+		ctrl = new Controleur();
+		ctrl.init(gc);
+		vue = new Views(ctrl);
+		decor = new DecorGame(ctrl);
+		vue.setDecor(decor);
+		num_frame = 0;
+		timer = 0;
+	}
+	
+	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		// TODO Auto-generated method stub
 		
@@ -68,26 +82,11 @@ public class Game extends BasicGame {
 	}
 
 	@Override
-	public void init(GameContainer gc) throws SlickException {
-		x_pl = 100;
-		y_pl = 100;
-		dimCard = 100;
-		ctrl = new Controleur();
-		ctrl.init(gc);
-		vue = new Views(ctrl);
-		decor = new DecorGame(ctrl);
-		vue.setDecor(decor);
-		num_frame = 0;
-		timer = 0;
-	}
-
-	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
 		// TODO Auto-generated method stub
 		Input inp = gc.getInput();
 		timer += delta;
-		//if(num_frame!=2)
-			ctrl.manageSong(delta);
+		ctrl.manageSong(delta);
 			
 		//gestion de accueil	
 		if(num_frame==0) {
@@ -169,6 +168,7 @@ public class Game extends BasicGame {
 
 		}
 		
+		//gestion de la page d'aide
 		if(num_frame == 5) {
 			
 			if(inp.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
