@@ -1,32 +1,30 @@
 package memory;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Plateau implements Serializable{
+public class Plateau {
 	
 
-	private final int MAX = 30;
-	public final int WIDTH_CARD = 100;
-	public final int HEIGHT_CARD = 100;
-	public final int TICK_INTERVAL = 20;
-	private int X_MIN = 100;
-	private int X_MAX;
-	private int Y_MIN = 100;
-	private int Y_MAX;
-	private int height, width, level;
+	private final int MAX = 30;				//nombre max d'image pour le plateau
+	public final int WIDTH_CARD = 100;		//largeur d'une carte
+	public final int HEIGHT_CARD = 100;     //hauteur d'une carte
+	public final int TICK_INTERVAL = 20;    //espace entre deux cartes
+	private int X_MIN = 100;				//limite inférieure de mobilité de plateau sur x
+	private int X_MAX;						//limite supérieure de mobilité de plateau sur x
+	private int Y_MIN = 100;				//limite inférieure de mobilité de plateau sur y
+	private int Y_MAX;						//limite supérieure de mobilité de plateau sur y
+	private int height, width, level;		//nombre de ligne, de colonne et le niveau
 	private String category; 
 	private Card[][] grille;
 	private Image img;
-	private int x, y;
-	private int widthWin, heightWin;
-	private int lenPack;
-	private boolean moving;
+	private int x, y;						//coord du coin sup gauche du plateau
+	private int widthWin, heightWin;		//taille de la fenetre
+	private int lenPack;					//nombre de cartes pour la validation
+	private boolean moving;					//plateau mobile ou pas
 	
 	public Plateau(int x, int y,int level, String category, boolean moving, int lenPack, GameContainer gc) throws SlickException {
 		int u, v;
@@ -56,6 +54,9 @@ public class Plateau implements Serializable{
 		for(int i =0; i<MAX; i++) {
 			accu.add(i);
 		}
+		
+		//génération du plateau en mode complètement aléatoire à partir des images
+		//d'un dossier de catégories
 		
 		if(lenPack == 2)
 	 		for(int i=0; i<width*height/2; i++) {
@@ -126,11 +127,14 @@ public class Plateau implements Serializable{
 				else 
 					accu2.remove(temp4-2);
 	 		}
+		
+		//initialisation des vitesses
  		for(int i=0; i<height; i++) {
  			for(int j=0; j<width; j++) {
  				grille[i][j].setVitesse((float)(Math.random()*200)-100, (float)(Math.random()*200)-100);
  			}
  		}
+ 		//initialisation des positions
  		initPositionCard();
  		if(!moving)
  			changePosition();
@@ -169,6 +173,8 @@ public class Plateau implements Serializable{
 	public void moveCard(float delta) {
 		for(int i = 0; i<this.height; i++) {
 			for(int j = 0; j<this.width; j++) {
+				
+				//à décommenter pour prendre en compte les collisions entre cartes
 				/*for(int k = 0; k<this.height; k++) {
 					for(int l = 0; l<this.width; l++) { 
 						if((k!=i || l!=j))
