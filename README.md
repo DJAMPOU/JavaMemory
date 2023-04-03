@@ -4,6 +4,9 @@
   </h1>
 
   <h3 align="center">A reproduction of the memory game application.</h3>
+  <a href="https://www.linkedin.com/posts/pedro-le-prince-djampou-366122240_video-java-ugcPost-7021531611791831041-5lu7?utm_source=share&utm_medium=member_desktop">
+  Click here to see a demo.
+  </a>
 </div>
 
 <br/>
