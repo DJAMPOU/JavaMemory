@@ -9,6 +9,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 
+/*******************************************
+Chaque methode de cette class a pour but
+d'afficher une vue à l'ecran
+********************************************/
 public class Views {
 
 	private Controleur ctrl;
