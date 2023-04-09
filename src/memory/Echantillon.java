@@ -3,12 +3,15 @@ package memory;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
+/******************************************************
+Carte utilisée pour les démonstrations (tuto)
+*******************************************************/
 public class Echantillon {
 
-	private Image img;
-	private static Image frameHover;
-	private int lastX, lastY;
-	private boolean hover;
+	private Image img;			//image l'echantillon
+	private static Image frameHover;	//bordure flou
+	private int lastX, lastY;		//coords de l'echantillon
+	private boolean hover;			//survolé par la souris ou pas
 	
 	public Echantillon(Image img, Image frame) {
 		hover = false;
@@ -19,6 +22,9 @@ public class Echantillon {
 		lastY = -1;
 	}
 	
+	/************************************************
+	verifie si le point (x, y) est sur l'echantillon
+	*************************************************/
 	public boolean verifHover(int x, int y) {
 		if(x>lastX && y>lastY && x<lastX+img.getWidth() && y<lastY+img.getHeight()) {
 			hover = true;
@@ -29,6 +35,9 @@ public class Echantillon {
 		return false;
 	}
 
+	/****************************************************
+	Affiche l'echantillon
+	*****************************************************/
 	public void dessiner(Graphics g) {
 		g.drawImage(img, lastX, lastY);
 		if(hover) 
