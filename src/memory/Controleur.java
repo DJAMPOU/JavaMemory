@@ -14,23 +14,23 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.font.effects.ShadowEffect;
 
 /*************************************
- * cette class est le cerveau du jeu.*
- * @author pedro					 *
+ * Cette class est le cerveau du jeu.*
+ * @author pedro		     *
  ************************************/
 public class Controleur {
 
 	      
-	private ArrayList animCard;					//carte anime a un instant donnee
-	private ArrayList CardForValidation;
-	private final int nbrJoueurMax = 4;  
-	private int prevFrame;						//pour le frame precedent
-	private int timerTutoPairs, stepAnimTutoPairs;
-	private int numDos;
-	private int playing, timer;
+	private ArrayList animCard;					//liste des cartes animées à un instant donné
+	private ArrayList CardForValidation;				//liste des cartes en attente de validation(le joueur n'a pas encore fini de selectionner la pair ou le triplet)				
+	private final int nbrJoueurMax = 4;  				//nombre de joueur max
+	private int prevFrame;						//indique la page precedente lors d'une navigation
+	private int timerTutoPairs, stepAnimTutoPairs;			//Utilisé pour gérer les animations du tuto des paramètres
+	private int numDos;						//indique le dos actuel des cartes
+	private int playing, timer;					//indique le joueur actuel
 	private int timerSong;
 	private int end;
-	private int nbrCardValidation;
-	private boolean isChoosingNumcard;
+	private int nbrCardValidation;					//Nombre de carte identique necessaire pour valider
+	private boolean isChoosingNumcard;				
 	private  boolean temp, animStartGame, prevTemp;
 	private boolean pl_move;
 	private int[] stepMenu;						//0 pour la categorie, 1 pour mode, [2]+1 pour le level et [3]+1 pour le nombre de joueur
@@ -162,7 +162,9 @@ public class Controleur {
 		help = new Aide(gc, this.chargeHelp());
  	}
 	
-	
+	/*******************************************
+	Charge l'aide depuis un fichier
+	********************************************/
 	private String chargeHelp() {
 		String help = "";
 		try
