@@ -9,14 +9,18 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 
+/***************************************
+Cette class sert à générer une fénêtre
+d'aide presque autonome.
+****************************************/
 public class Aide {
-	private String[] contenu;
-	private final int nbrLineMax = 10;
-	private int cur;
-	private Button house;
-	private Button up, down;
-	private Image imgFont;
-	private Font font;
+	private String[] contenu;		// contient le contenu de l'aide à afficher
+	private final int nbrLineMax = 10;	//nombre de ligne max qui s'affiche à l'ecran 
+	private int cur;			//position courante de la vue sur tout l'aide
+	private Button house;			// boutton pour rentrer au menu
+	private Button up, down;		// bouton de navigation
+	private Image imgFont;			//image de font
+	private Font font;			
 	private TrueTypeFont ttf;
 	
 	public Aide(GameContainer gc, String contenu) throws SlickException {
@@ -30,6 +34,10 @@ public class Aide {
 		ttf = new TrueTypeFont(font, true);
 	}
 	
+	/**************************************************
+	cette fonction a pour role d'afficher un rendu de
+	l'aide.
+	***************************************************/
 	public void dessiner(Graphics g, GameContainer gc) {
 		g.drawImage(imgFont, 0, 0);
 		house.dessiner(g);
@@ -46,6 +54,11 @@ public class Aide {
 		g.fillRect(1050, 50+550*cur/(contenu.length-10), 50, 50);
 	}
 	
+	/**************************************
+	Elle traite les évèvements occurents
+	sur la fenètre de l'aide au point de 
+	coordonné x, y
+	***************************************/
 	public int getEvenAide(int x, int y) {
 		if(house.isHover(x, y)) {
 			return 1;
@@ -60,6 +73,10 @@ public class Aide {
 		return 0;
 	}
 	
+	/***********************************
+	signale aux divers bouton si ils sont
+	survolé.
+	************************************/
 	public void manageHover(int x, int y) {
 		house.isHover(x, y);
 		up.isHover(x, y);
