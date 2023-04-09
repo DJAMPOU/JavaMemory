@@ -9,15 +9,18 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 
+/***************************************************
+Cette class se charge du decor de la page de jeu
+****************************************************/
 public class DecorGame {
 
 	private Controleur ctrl;
-	private String[] perso = {"Red", "Blue", "Yellow", "Green"};
-	private String mode;
+	private String[] perso = {"Red", "Blue", "Yellow", "Green"};	//des speudos des joueurs
+	private String mode;						//Indique le mode de jeu
 	private Font font;
 	private TrueTypeFont ttf;
 	private String[] listMode;
-	private Image bande;
+	private Image bande;						//Bande du haut pour écrire le mode
 	
 	public DecorGame(Controleur ctrl) throws SlickException {
 		this.ctrl = ctrl;
@@ -32,6 +35,10 @@ public class DecorGame {
 		listMode[3] = "Remenber All";
 	}
 
+	
+	/***********************************************************************
+	Dessine de decor
+	************************************************************************/
 	public void dessiner(GameContainer gc, Graphics g) throws SlickException {
 		g.drawImage(new Image("fondGame.jpg"), 0, 0);
 		g.drawImage(bande, gc.getWidth()/2-200, 55);
@@ -67,6 +74,9 @@ public class DecorGame {
 		ctrl.getButtonBack().dessiner(g);
 	}
 	
+	/*******************************************
+	Renvoie le temps sous forme normalisé
+	********************************************/
 	private String normalizeTime(float time) {
 		return String.format("%02d", (int)((time/1000)/60)) + ":" + String.format("%02d", (int)((time/1000)%60));
 	}
