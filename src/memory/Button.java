@@ -5,12 +5,15 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 
+/*******************************************
+Cette class sert à générer un bouton autonome. 
+********************************************/
 public class Button {
 
-	private int x, y;
-	private int hover;
-	private Image imgHover, img;
-	private static Music song ;
+	private int x, y;		// coords du bouton
+	private int hover;		// indique si le bouton est survolé par la souris
+	private Image imgHover, img;	// images du boutons survolé et non survolé
+	private static Music song ;	//song lors du clic, en static car commun à tout les boutons. 
 	
 	public Button(int x, int y, String img, String imgHover) throws SlickException {
 		this.x = x;
@@ -22,6 +25,12 @@ public class Button {
 		hover = 0;
 	}
 
+	/*******************************************
+	Indique si un bouton est survolé ou pas. Il 
+	l'indique à la fonction appelante via un return 
+	et change aussi son propre état interne via la 
+	variable hover.
+	********************************************/
 	public boolean isHover(int x, int y) {
 		if(x>this.x && x<this.x+img.getWidth() && y>this.y && y<this.y+img.getHeight()) {
 			hover = 1;
@@ -33,6 +42,9 @@ public class Button {
 		}
 	}
 	
+	/*********************************************
+	Affiche un rendu du bouton
+	**********************************************/
 	public void dessiner(Graphics g) {
 		if(hover == 0)
 			g.drawImage(img, x, y);
