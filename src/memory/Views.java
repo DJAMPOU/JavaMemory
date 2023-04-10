@@ -15,16 +15,16 @@ d'afficher une vue à l'ecran
 ********************************************/
 public class Views {
 
-	private Controleur ctrl;
-	private Echantillon[] dosCards;
+	private Controleur ctrl;		//Une instance du controleur du jeu
+	private Echantillon[] dosCards;		//des echantillons pour le tuto du setting
 	private Image fondAc, imageMenu, category, fontChangeCard;
 	private Image fontSetting, cadreSetting;
-	private String[] labelCat;
-	private Plateau pl;
-	private DecorGame decor;
+	private String[] labelCat;		//liste des catégories de jeux
+	private Plateau pl;			//une instance du plateu du jeu
+	private DecorGame decor;		//Utiliser pour décorer la page de jeu
 	private Image fondMenu, logoMenu, cateMenu;
 	private Image gameHover, win, logoWin;
-	private int cate;
+	private int cate;			//categorie de jeu actuelle
 	private Font fontTitle,fontSimple;
 	private TrueTypeFont ttfTitle, ttfSimple;
 	
@@ -58,15 +58,24 @@ public class Views {
 		win = new Image("win.png");
 	}
 
+	/*****************************************
+	Génère un rendu de la page d'accueil
+	******************************************/
 	public void accueil(Graphics g, float timer) {
 		g.drawImage(fondAc, 0, 0);
 		ctrl.getButtonStart().dessiner(g);
 	}
 	
+	/*****************************************
+	Génère un rendu de la page d'aide
+	******************************************/
 	public void help(Graphics g, GameContainer gc) {
 		ctrl.getHelp().dessiner(g, gc);
 	}
 	
+	/*****************************************
+	Génère un rendu de la page de menu
+	******************************************/
 	public void menu(Graphics g, GameContainer gc) throws SlickException {
 		g.drawImage(fondMenu, 0, 0);
 		
@@ -107,7 +116,10 @@ public class Views {
 		ctrl.getButtonExit().dessiner(g);
 	}
 
-	
+	/*****************************************
+	Génère un rendu de l'option pour changer 
+	le dos des cartes du setting
+	******************************************/
 	public void changeDosCard(GameContainer gc, Graphics g) throws SlickException {
 		g.drawImage(fontChangeCard, gc.getWidth()/2 - fontChangeCard.getWidth()/2, gc.getHeight()/2 - fontChangeCard.getHeight()/2);
 		ttfTitle.drawString(gc.getWidth()/2-250, gc.getHeight()/2 - fontChangeCard.getHeight()/2+50, "Change Style Card");
@@ -117,6 +129,9 @@ public class Views {
 		}
 	}
 	
+	/*****************************************
+	Génère un rendu de la page setting
+	******************************************/
 	public void sitting(GameContainer gc, Graphics g) throws SlickException {
 		g.drawImage(fontSetting, 0, 0);
 		ttfTitle.drawString(gc.getWidth()/2 - 100, 10, "Setting", Color.black);
@@ -159,22 +174,35 @@ public class Views {
 		}
 	}
 	
+	/*****************************************
+	Génère un rendu de la page menu suite à une
+	partie non achévé
+	******************************************/
 	public void menu2(Graphics g, GameContainer gc) throws SlickException {
 		this.menu(g, gc);
 		ctrl.getButtonContinu().dessiner(g);
 	}
 	
+	/*****************************************
+	Génère un rendu de la page de jeu
+	******************************************/
 	public void drawParty(GameContainer gc, Graphics g) throws SlickException {
 		decor.dessiner(gc, g);
 		pl.dessiner(g);
 	}
 	
+	/*****************************************
+	Génère un rendu de la page de gameHover
+	******************************************/
 	public void gameHover(Graphics g) {
 		g.drawImage(gameHover, 0, 0);
 		ctrl.getButtonReplay().dessiner(g);
 		ctrl.getButtonHome().dessiner(g);
 	}
 	
+	/*****************************************
+	Génère un rendu de la page win
+	******************************************/
 	public void win(Graphics g, GameContainer gc) {
 		g.drawImage(win, 0, 0);
 		if(ctrl.getJoueur() != 1)
