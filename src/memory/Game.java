@@ -9,6 +9,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 
+/*******************************************
+C'est ici que le jeu tourne. 
+********************************************/
 public class Game extends BasicGame {
 
 	private Views vue;           //class charger de gerer toute les vues
@@ -24,6 +27,9 @@ public class Game extends BasicGame {
 		// TODO Auto-generated constructor stub
 	}
 
+	/*********************************************
+	Elle s'exécute une seule fois au lancement du jeu
+	**********************************************/
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		x_pl = 100;
@@ -38,41 +44,46 @@ public class Game extends BasicGame {
 		timer = 0;
 	}
 	
+	/**************************************************
+	Elle affiche à chaque fois un rendu (elle tourne toute
+	seule, mais on peut définir sa vitesse dans le main
+	comme je l'ai fait)
+	***************************************************/
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		// TODO Auto-generated method stub
 		
-		//accueil
+		//page d'accueil
 		if(num_frame==0) {
 			vue.accueil(g, timer);
 		}
 		
-		//menu principal
+		//page du menu principal
 		else if(num_frame==1) {
 			vue.menu(g, gc);
 		}
 		
-		//menu suite a une partie
+		//page du menu suite a une partie
 		else if(num_frame==-1) {
 			vue.menu2(g, gc);
 		}
 		
-		//game
+		//page de jeu
 		else if(num_frame == 2) {
 			vue.drawParty(gc, g);
 		}
 		
-		//setting
+		//page du setting
 		else if(num_frame == 3) {
 			vue.sitting(gc, g);
 		}
 		
-		//aide
+		//page de l'aide
 		else if(num_frame == 5) {
 			vue.help(g, gc);
 		}
 		
-		//fin de partie
+		//page de fin de partie
 		else if(num_frame == 4) {
 			if(ctrl.getEnd() == -1)
 				vue.gameHover(g);
@@ -81,6 +92,13 @@ public class Game extends BasicGame {
 		}
 	}
 
+	/********************************************************************
+	Elle met les informations à jour dans des intervales de temps comme
+	la methode render. les infos mis à jour permettent aussi de changer le
+	rendu suivant. Donc Basic Game à jugé bon de séparer les calculs graphiques
+	et les calculs de traitement proprement dit dans deux lignes d'exécutions
+	différents pour un résultat optimal. 
+	*********************************************************************/
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
 		// TODO Auto-generated method stub
