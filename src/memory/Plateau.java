@@ -7,6 +7,9 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+/*********************************************************
+Cette class génère un plateau de jeu, peut importe le niveau
+**********************************************************/
 public class Plateau {
 	
 
@@ -80,9 +83,6 @@ public class Plateau {
 				v = (int)(accu2.get(temp3))%width;
 				grille[u][v] = new Card(img, i);
 				
-				
-				
-				
 				accu2.remove(temp2);
 				if(temp2>temp3)
 					accu2.remove(temp3);
@@ -141,14 +141,9 @@ public class Plateau {
  			changePosition();
 	}
 	
-	public int getHeight() {
-		return height;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
+	/**************************************************
+	affiche un rendu du plateau à l'ecran
+	***************************************************/
 	public void dessiner(Graphics g) throws SlickException {
 		for(int i =0; i<width; i++) {
 			for(int j = 0; j<height; j++) {
@@ -157,12 +152,18 @@ public class Plateau {
 		}
 	}
 	
+	/************************************************************
+	change la position du plateau tout entier à l'ecran
+	*************************************************************/
 	private void changePosition() {
 		this.x = widthWin/2-(width*WIDTH_CARD + (width-1)*TICK_INTERVAL)/2;
 		this.y = heightWin/2-(height*HEIGHT_CARD + (height-1)*TICK_INTERVAL)/2;
 		initPositionCard();
 	}
 	
+	/************************************************************
+	initialise la position des cartes à l'écran
+	*************************************************************/
 	private void initPositionCard() {
 		for(int i=0; i<height; i++) {
  			for(int j=0; j<width; j++) {
@@ -171,6 +172,10 @@ public class Plateau {
  		}	
 	}
 	
+	/***********************************************
+	gère le mouvement des cartes pour les parties
+	où les cartes bougent à l'ecran
+	************************************************/
 	public void moveCard(float delta) {
 		for(int i = 0; i<this.height; i++) {
 			for(int j = 0; j<this.width; j++) {
@@ -192,7 +197,13 @@ public class Plateau {
 		}
 	}
 	
+	public int getHeight() {
+		return height;
+	}
 
+	public int getWidth() {
+		return width;
+	}
 
 	public int getX() {
 		return x;
