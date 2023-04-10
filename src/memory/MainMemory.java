@@ -10,9 +10,9 @@ public class MainMemory {
 		Game memo = new Game("Memory Game");
 		AppGameContainer app = new AppGameContainer(memo);
 		app.setShowFPS(false);
-		app.setTargetFrameRate(500);
-		app.setDisplayMode(1500, 800, false);;
-		app.start();
+		app.setTargetFrameRate(500);//nombre de frame max par seconde
+		app.setDisplayMode(1500, 800, false);//taille de la fenetre
+		app.start();//on lance l'appli
 	}
 
 }
