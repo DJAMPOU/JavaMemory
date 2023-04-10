@@ -7,15 +7,19 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 
+/************************************************
+Cette class permet de générer une liste déroulante 
+autonome.
+*************************************************/
 public class List {
 
-	private int x, y, height, width, currentSelect;
-	private Button rep;
-	private Button[] listBout;
-	private Button unRollUp, unRollDown;
-	private String[] listLab;
-	private boolean unRoll;
-	private Font font;
+	private int x, y, height, width, currentSelect;	//(x, y) sont les coords de la liste sur l'ecran, height et width ses dimensions lorsque elle est déroulé, et currentSelect l'element sélectionneé de la liste
+	private Button rep;				//le bouton affiché pour représenter l'élément sélectionné (représentant)
+	private Button[] listBout;			//le menu déroulant est en fait une liste de 'bouton' pour ne pas avoir à réecrire des fonctionnalitées
+	private Button unRollUp, unRollDown;		//bouton pour rouler et pour dérouler
+	private String[] listLab;			//liste des éléments de la liste
+	private boolean unRoll;				//indique si la liste est déroulé ou pas
+	private Font font;				//font utilisé
 	private TrueTypeFont ttf;
 	private String label;
 	
@@ -46,6 +50,10 @@ public class List {
 		ttf = new TrueTypeFont(font, true);
 	}
 
+	/*******************************************
+	Affiche la liste déroulante qu'elle soit 
+	déroulé ou pas
+	********************************************/
 	public void dessiner(Graphics g) {
 		g.setColor(Color.blue);
 		ttf.drawString(x, y-20, label + ":");
@@ -59,6 +67,9 @@ public class List {
 			this.dessinerList(g);
 	}
 	
+	/****************************************************
+	Désinne juste le contenu de la liste
+	*****************************************************/
 	public void dessinerList(Graphics g) {
 		g.setColor(Color.blue);
 		g.setLineWidth(10);
@@ -74,6 +85,9 @@ public class List {
 		}
 	}
 	
+	/*******************************************
+	Renvoie l'élément sélectionné de la liste
+	********************************************/
 	public int isSelected(int x, int y) {
 		for(int i=0; i<listLab.length; i++)
 			if(listBout[i].isHover(x, y)) {
@@ -84,6 +98,9 @@ public class List {
 		return -1;
 	}
 	
+	/*******************************************
+	Vérifie si un élément de la liste est survolé
+	********************************************/
 	public boolean verifHover(int x, int y) {
 		boolean temp = false;
 		if(unRollDown.isHover(x, y) && !unRoll)
@@ -97,6 +114,10 @@ public class List {
 		return temp;
 	}
 	
+	/************************************
+	Vérifie si le réprésentant de la liste 
+	est survolé
+	*************************************/
 	public boolean isRepHover(int x, int y) {
 		if(rep.isHover(x, y))
 			return true;
