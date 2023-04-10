@@ -7,6 +7,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 
+/*****************************************
+Utilisé pour générer un objet toggle 
+(comme un interupteur)
+******************************************/
 public class Toggle {
 
 	private String[] list;
@@ -32,6 +36,9 @@ public class Toggle {
 		return index;
 	}
 	
+	/**********************************************
+	Change l'etat du toggle lors d'un clic dessus
+	***********************************************/
 	public boolean swicth(int x, int y) {
 		for(int i =0; i<list.length; i++) {
 			if(i!= index && x>this.x+(none.getWidth()+ecart)*i && x<this.x+(none.getWidth()+ecart)*i+none.getWidth() && y>this.y && y<this.y+none.getHeight()) {
@@ -42,6 +49,10 @@ public class Toggle {
 		return false;
 	}
 	
+	/*******************************************
+	Vérifie si le toggle est survolé et agit 
+	en conséquence
+	********************************************/
 	public boolean hover(int x, int y) {
 		for(int i =0; i<list.length; i++) {
 			if(i!= index && x>this.x+(none.getWidth()+ecart)*i && x<this.x+(none.getWidth()+ecart)*i+none.getWidth() && y>this.y && y<this.y+none.getHeight()) {
@@ -53,6 +64,9 @@ public class Toggle {
 		return false;
 	}
 	
+	/*******************************************************
+	Déssine le toggle à l'ecran
+	********************************************************/
 	public void dessiner(Graphics g) throws SlickException {
 		for(int i = 0; i<list.length; i++) {
 			if(i==isHover) {
